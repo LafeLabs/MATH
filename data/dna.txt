@@ -1,0 +1,35 @@
+{
+    "html": [
+        "README.md",
+        "data.txt",
+        "down.html",
+        "edit.html",
+        "fork.html",
+        "index.html",
+        "neurotron.html",
+        "sketch.js",
+        "trashmagic.css",
+        "trashmagic.js",
+        "wall.html",
+        "wall.txt",
+        "web.html",
+        "webdestroyer.html",
+        "webeditor.html"
+    ],
+    "data": [
+        "dna.txt"
+    ],
+    "php": [
+        "copy.txt",
+        "deletefile.txt",
+        "dir.txt",
+        "dnagenerator.txt",
+        "editor.txt",
+        "fileloader.txt",
+        "filesaver.txt",
+        "mkdir.txt",
+        "rdelete.txt",
+        "replicator.txt",
+        "text2php.txt"
+    ]
+}
