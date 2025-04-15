@@ -1,5 +1,6 @@
 {
     "html": [
+        "MARKDOWN.md",
         "README.md",
         "branch.html",
         "delete-html.html",
@@ -8,20 +9,13 @@
         "edit-html.html",
         "edit-index.html",
         "edit-php.html",
-        "edit-qrcode-list.html",
-        "freebox.html",
-        "geometron-squares.html",
         "geometron.js",
         "index.html",
         "qrcode-list.html",
         "qrcode-list.txt",
         "qrcode-page.html",
         "qrcode.html",
-        "readme.html",
-        "squares.html",
-        "trashmagic.css",
-        "trashmagic.js",
-        "wall.txt"
+        "readme.html"
     ],
     "php": [
         "branch.txt",

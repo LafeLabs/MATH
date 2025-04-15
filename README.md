@@ -33,8 +33,10 @@ $$
  - [GITHUB](https://github.com/)
  - [GITHUB DESKTOP](https://github.com/apps/desktop)
 
+
 ## HTML AND TEXT FILES:
 
+  - [MARKDOWN.md](MARKDOWN.md)
   - [README.md](README.md)
   - [branch.html](branch.html)
   - [delete-html.html](delete-html.html)
@@ -43,9 +45,6 @@ $$
   - [edit-html.html](edit-html.html)
   - [edit-index.html](edit-index.html)
   - [edit-php.html](edit-php.html)
-  - [edit-qrcode-list.html](edit-qrcode-list.html)
-  - [freebox.html](freebox.html)
-  - [geometron-squares.html](geometron-squares.html)
   - [geometron.js](geometron.js)
   - [index.html](index.html)
   - [qrcode-list.html](qrcode-list.html)
@@ -53,10 +52,6 @@ $$
   - [qrcode-page.html](qrcode-page.html)
   - [qrcode.html](qrcode.html)
   - [readme.html](readme.html)
-  - [squares.html](squares.html)
-  - [trashmagic.css](trashmagic.css)
-  - [trashmagic.js](trashmagic.js)
-  - [wall.txt](wall.txt)
 
 ## PHP CODE AS RAW TEXT:
 
@@ -73,3 +68,5 @@ $$
   - [php/save-file.txt](php/save-file.txt)
   - [php/save-png.txt](php/save-png.txt)
   - [php/upload-image.txt](php/upload-image.txt)
+    
+

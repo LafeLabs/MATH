@@ -1,4 +1,11 @@
 /*
+READ THE BOOK OF GEOMETRON HERE:
+
+https://trashrobot.net/TRASHBOOK/GEOMETRON1/
+
+READ GEOMETRON MAGIC HERE:
+
+https://trashrobot.net/TRASHBOOK/GEOMETRON-MAGIC/
 
 A Geometron is a geometric virtual machine which has two 8x8x8 cubes of operations. Thus each cube has
 512 elements, for a total of 1024 addresses
