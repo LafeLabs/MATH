@@ -1,7 +1,4 @@
-# [{MATH}](https://github.com/lafeLabs/math)
-$$
-S = k_{\textrm{Boltzmann}}\log_e{\Omega}
-$$
+# [ELEMENTS OF {MATH}](https://github.com/lafeLabs/math)
 
 ![](math-qrcode.png)
 ## HOTLINKS
@@ -16,7 +13,9 @@ $$
  - [branch.html](branch.html)
  - [../](../)
 
-## SYSTEM ELEMENTS
+$$
+S = k_{\textrm{Boltzmann}}\log_e{\Omega}
+$$
 
  - [showdown.js](https://showdownjs.com/)
  - [mathjax.js](https://www.mathjax.org/)
