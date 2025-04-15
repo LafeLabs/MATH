@@ -81,13 +81,19 @@ function setup(){
     strokeWeight(30);        
 }
 
+timeindex = 0;
+pulsePeriod = 200;
 function draw(){
   clear();
-  circle(mouseX,mouseY,100,);
+  circle(mouseX,mouseY,100*Math.cos(2*Math.PI*timeindex/pulsePeriod));
   data[0].x[0] = mouseX/100;
   data[0].y[0] = mouseY/10;
 
   Plotly.newPlot('plotlydiv', data);
+  timeindex++;
+  if(timeindex > 1e5){
+      timeindex = 0;
+  }
 }
 
 var converter = new showdown.Converter();
