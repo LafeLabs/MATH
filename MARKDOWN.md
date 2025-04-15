@@ -1,15 +1,7 @@
-# [ELEMENTS OF {MATH}](https://github.com/lafeLabs/math)
-
-## HOTLINKS
-
- - [index.html](index.html)
- - [edit-index.html](edit-index.html) 
- - [edit-html.html](edit-html.html)
- - [readme.html](readme.html)
- - [edit-php.html](edit-php.html)
-
+# ELEMENTS OF {MATH}
+    
 $$
-S = k_{\textrm{Boltzmann}}\log_e{\Omega}
+E = mc^2
 $$
 
  - [showdown.js](https://showdownjs.com/)

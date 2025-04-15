@@ -22,6 +22,8 @@ https://cloud9-sdk.readme.io/docs/language-mode
 
 -->    
 <script src = "https://cdnjs.cloudflare.com/ajax/libs/plotly.js/1.33.1/plotly.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.6/ace.js" type="text/javascript" charset="utf-8"></script>
 <script src = "https://cdnjs.cloudflare.com/ajax/libs/showdown/1.8.6/showdown.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 <script>
@@ -39,23 +41,29 @@ https://cloud9-sdk.readme.io/docs/language-mode
 </head>
 <body>
 <h1>{MATH}</h1>
+<div id = "lightdarkbutton" class = "button">--> DARK MODE <--</div>
+
+<div id = "markdowneditor" contenteditable="true" spellcheck="false"></div>
+<div id = "htmleditor" contenteditable="true" spellcheck="false"></div>
 
 <div id = "displayscroll"></div>
 
 <script>
 
-function setup(){
-    createCanvas(innerWidth*0.48,innerHeight- 100);
-    background(200,200,200);
-    stroke(0);
-    strokeWeight(30);        
-}
 
-function draw(){
-  clear();
-  background(200);
-  circle(mouseX,mouseY,100,);
-}
+htmleditor = ace.edit("htmleditor");
+htmleditor.setTheme("ace/theme/github");
+htmleditor.getSession().setMode("ace/mode/html");
+htmleditor.getSession().setUseWrapMode(true);
+htmleditor.$blockScrolling = Infinity;
+
+editor = ace.edit("markdowneditor");
+editor.setTheme("ace/theme/github");
+editor.getSession().setMode("ace/mode/markdown");
+editor.getSession().setUseWrapMode(true);
+editor.$blockScrolling = Infinity;
+
+
 
 var converter = new showdown.Converter();
 // for more on options see here:
@@ -63,6 +71,8 @@ var converter = new showdown.Converter();
 converter.setOption('literalMidWordUnderscores', 'true');
 converter.setOption('tables', 'true')
     
+
+
 var httpc = new XMLHttpRequest();
 httpc.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
@@ -70,21 +80,80 @@ httpc.onreadystatechange = function() {
         rawhtml = converter.makeHtml(markdownfiledata);
         document.getElementById("displayscroll").innerHTML = rawhtml;
         MathJax.Hub.Typeset();//tell Mathjax to update the math
+        editor.setValue(markdownfiledata);
     }
 };
 httpc.open("GET", "load-file.php?filename=README.md", true);
 httpc.send();
 
+var httpc2 = new XMLHttpRequest();
+httpc2.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        htmlfiledata = this.responseText;
+        htmleditor.setValue(htmlfiledata);
+    }
+};
+httpc2.open("GET", "load-file.php?filename=index.html", true);
+httpc2.send();
+
+
+document.getElementById("markdowneditor").onkeyup = function(){
+    markdowndata = encodeURIComponent(editor.getSession().getValue());
+    var httpc3 = new XMLHttpRequest();
+    var url = "save-file.php";        
+    httpc3.open("POST", url, true);
+    httpc3.setRequestHeader("Content-Type", "application/x-www-form-urlencoded;charset=utf-8");
+    httpc3.send("data="+markdowndata+"&filename=MARKDOWN.md");//send text to save-file.php
+}
+
+
+lightmode = true;
+document.getElementById("lightdarkbutton").style.color = "black";
+document.getElementById("lightdarkbutton").style.borderColor = "black";
+
+document.getElementById("displayscroll").style.backgroundColor = "#EEEEEE";
+document.getElementById("displayscroll").style.color = "black";        
+document.getElementById("lightdarkbutton").innerHTML = "DARK MODE";
+editor.setTheme("ace/theme/github");
+var links = document.getElementById("displayscroll").getElementsByTagName("a");
+for(var index = 0;index < links.length;index++){
+    links[index].style.color = "blue";
+}
+
+document.getElementById("lightdarkbutton").onclick = function(){
+    lightmode = !lightmode;
+    if(lightmode){
+        document.getElementById("lightdarkbutton").style.color = "black";
+        document.getElementById("lightdarkbutton").style.borderColor = "black";
+        document.getElementById("lightdarkbutton").style.backgroundColor = "#EEEEEE";
+        document.getElementById("displayscroll").style.backgroundColor = "#EEEEEE";
+        document.getElementById("displayscroll").style.color = "black";        
+        document.getElementById("lightdarkbutton").innerHTML = "DARK MODE";
+        editor.setTheme("ace/theme/github");
+        var links = document.getElementById("displayscroll").getElementsByTagName("a");
+        for(var index = 0;index < links.length;index++){
+            links[index].style.color = "blue";
+        }
+    }
+    else{
+
+        document.getElementById("lightdarkbutton").style.color = "white";
+        document.getElementById("lightdarkbutton").style.borderColor = "white";
+        document.getElementById("lightdarkbutton").style.backgroundColor = "#101010";
+        document.getElementById("displayscroll").style.backgroundColor = "#101010";        
+        document.getElementById("displayscroll").style.color = "white";        
+        document.getElementById("lightdarkbutton").innerHTML = "LIGHT MODE";        
+        editor.setTheme("ace/theme/vibrant_ink");
+
+        var links = document.getElementById("displayscroll").getElementsByTagName("a");
+        for(var index = 0;index < links.length;index++){
+            links[index].style.color = "#ff2cb4";
+        }        
+    }
+}
+
 </script>
 <style>
-main{
-    position:absolute;
-    left:1em;
-    bottom:1em;
-}
-main canvas{
-    border:solid;
-}
 body{
     overflow:hidden;
     font-family:COMIC SANS MS;
@@ -123,7 +192,7 @@ A{
     position:absolute;
     left:55%;
     right:1em;
-    bottom:1EM;
+    bottom:52%;
     font-family:COMIC SANS MS;
     top:5em;
     border:solid;
@@ -153,6 +222,17 @@ pre{
 }
 .button:active{
     background-color:yellow;
+}
+#lightdarkbutton{
+    position:absolute;
+    right:10px;
+    top:10px;
+    width:10em;
+    text-align:center;
+    border:solid;
+    border-radius:3px;
+    font-size:2em;
+    color:black;
 }
 
 </style>
