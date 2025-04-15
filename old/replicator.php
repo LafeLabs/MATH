@@ -1,17 +1,19 @@
 <?php
-$dnaurl = "https://raw.githubusercontent.com/LafeLabs/MATH/refs/heads/main/dna.txt";
+
+$dnaurl = "https://trashrobot.net/MATH/data/dna.txt";
 
 if(isset($_GET["dna"])){
     $dnaurl = $_GET["dna"];
 }
 
-$baseurl = explode("dna.txt",$dnaurl)[0];
+$baseurl = explode("data/",$dnaurl)[0];
 $dnaraw = file_get_contents($dnaurl);
 $dna = json_decode($dnaraw);
 
+mkdir("data");
 mkdir("php");
 
-copy("https://raw.githubusercontent.com/LafeLabs/MATH/refs/heads/main/php/replicator.txt","replicator.php");
+copy("https://trashrobot.net/MATH/php/replicator.txt","replicator.php");
 
 
 foreach($dna->html as $value){
@@ -21,12 +23,34 @@ foreach($dna->html as $value){
 }
 
 
+foreach($dna->data as $value){
+    
+    copy($baseurl."data/".$value,"data/".$value);
+    
+}
+
+
+
 foreach($dna->php as $value){
  
     copy($baseurl."php/".$value,"php/".$value);
     copy($baseurl."php/".$value,explode(".",$value)[0].".php");
 
 }
+    
+foreach($dna->scrolls as $value){
+    
+    copy($baseurl."scrolls/".$value,"scrolls/".$value);
+
+}
+    
+
+foreach($dna->iconsymbols as $value){
+    
+    copy($baseurl."iconsymbols/".$value,"iconsymbols/".$value);
+
+}
+
 
 ?>
 <a href = "index.html">CLICK ME(3/3)</a>
