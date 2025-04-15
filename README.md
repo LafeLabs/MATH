@@ -15,6 +15,7 @@ $$
  - [qrcode.html](qrcode.html)
  - [branch.html](branch.html)
  - [../](../)
+ - [raw replicator](https://raw.githubusercontent.com/LafeLabs/MATH/refs/heads/main/php/replicator.txt)
 
 ## SYSTEM ELEMENTS
 
