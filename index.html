@@ -44,36 +44,11 @@ https://cloud9-sdk.readme.io/docs/language-mode
         width:50%;
     }
 </style>
-<div id = "plotlydiv"></div>
+
 <div id = "displayscroll"></div>
 
 <script>
-
-var trace1 = {
-  x: [1, 2, 3, 4],
-  y: [10, 15, 13, 17],
-  mode: 'markers',
-  type: 'scatter'
-};
-
-var trace2 = {
-  x: [2, 3, 4, 5],
-  y: [16, 5, 11, 9],
-  mode: 'lines',
-  type: 'scatter'
-};
-
-var trace3 = {
-  x: [1, 2, 3, 4],
-  y: [12, 9, 15, 12],
-  mode: 'lines+markers',
-  type: 'scatter'
-};
-
-var data = [trace1, trace2, trace3];
-
-Plotly.newPlot('plotlydiv', data);
-
+squaresize = innerWidth*0.48;
 
 function setup(){
     createCanvas(innerWidth*0.48,innerHeight- 100);
@@ -86,14 +61,22 @@ pulsePeriod = 200;
 function draw(){
   clear();
   circle(mouseX,mouseY,100*Math.cos(2*Math.PI*timeindex/pulsePeriod));
-  data[0].x[0] = mouseX/100;
-  data[0].y[0] = mouseY/10;
 
-  Plotly.newPlot('plotlydiv', data);
   timeindex++;
   if(timeindex > 1e5){
       timeindex = 0;
   }
+  sigma = mouseY;
+  x0 = mouseX;
+  
+  noFill();
+  beginShape();
+  for (let x = 0; x < squaresize; x += 1)  {
+      y = squaresize - 0.5*squaresize*exp(-(x - x0)*(x - x0)/(sigma*sigma)) - 10;
+      vertex(x,y);
+  }
+  endShape();
+  
 }
 
 var converter = new showdown.Converter();
